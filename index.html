@@ -11,20 +11,20 @@
         }
         
         #qrResult {
-            text-align: center;
-            height: 100%;
-            width: 100%;
+            margin: auto;
+            height: 16rem;
+            width: 16rem;
         }
     </style>
 </head>
 
 <body>
     <!-- <a href="./instascan.html">InstaScan QR Code Scanner</a>
-    <a href="./qrcodein.html">Code Kotis QR Code Scanner</a>
+    <a href="./qrcodein.html">Code Kotis QR Code Scanner</a> -->
     <form onsubmit="generate();return false;">
-        <input type="text" id="qr" name="">
-    </form> -->
-    <h1>Sirandu Unila</h1>
+        <input type="text" id="qr" name="" style="width: 100%;">
+    </form>
+    <h1>Dynamic QR Code</h1>
     <div id="qrResult"></div>
 
 
@@ -44,14 +44,27 @@
 
         function getRandomInt(max) {
             let token = Math.floor(Math.random() * Math.floor(max));
-            console.log(token);
-            return "token" + token;
+            let idalat = "FH01";
+            let d = new Date();
+            let waktu = d.getTime();
+            let pesan = idalat + waktu + token;
+            console.log(pesan);
+            return pesan;
         }
 
         function makeqr() {
-            qrcode.makeCode(getRandomInt(9999));
+            qrcode.makeCode(getRandomInt(9999)
+                // , {
+                //     width: 50,
+                //     height: 50,
+                //     typeNumber: 4,
+                //     colorDark: "#000000",
+                //     colorLight: "#ffffff"
+                // }
+            );
         }
 
+        makeqr();
         setInterval(makeqr, 5000);
     </script>
 
